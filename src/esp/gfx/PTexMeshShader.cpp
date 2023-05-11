@@ -58,7 +58,10 @@ PTexMeshShader::PTexMeshShader() {
 #endif
   frag.addSource(rs.getString("ptex-default-gl410.frag"));
 
-  CORRADE_INTERNAL_ASSERT_OUTPUT(vert.compile() && frag.compile());
+
+  // compile geometry shader: https://github.com/facebookresearch/Replica-Dataset/issues/90
+  // CORRADE_INTERNAL_ASSERT_OUTPUT(vert.compile() && frag.compile());
+  CORRADE_INTERNAL_ASSERT_OUTPUT(vert.compile() && geom.compile() && frag.compile());
 
   attachShaders({vert, geom, frag});
 
